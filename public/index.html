@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="universal.css">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="./node_modules/cropperjs/dist/cropper.css" rel="stylesheet">
+    <title>BAD Forum</title>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <nav class="row fixHeader">
+            <div id="logo" class="col-md-2 col-sm-2 col-lg-1"><img src="logo.png"></div>
+            <div id="search-cat-outer" class="col-md-8 col-sm-8 col-lg-10">
+                <div id="search-cat-inner">
+                    <div id="search" action="">
+                        <div id="search-icon"><i class="fas fa-search"></i></div>
+                        <input id="searchbar" class="" type="text" placeholder="搜尋..." name="postname">
+                        <!-- <input id="submit" type="submit" value="submit"> -->
+                    </div>
+
+                    <div id="cat-wrap">
+
+
+                        <a class="cat-tag cat-0" href="/?category=0">
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        主頁
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="cat-tag cat-1" href="/?category=1">
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <i class="fas fa-landmark"></i>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        政治
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="cat-tag cat-2" href="/?category=2">
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <i class="fas fa-mobile"></i>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        科技
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="cat-tag cat-3" href="/?category=3">
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        生活
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="cat-tag cat-4" href="/?category=4">
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        興趣
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div id="profile-wrap" class="col-md-2 col-sm-2 col-lg-1">
+                <div id="profile" class="none" aria-haspopup="true" aria-expanded="false">
+                    <div id="photo-wrapper">
+                        <div id="photo" class="">
+                        </div>
+                    </div>
+                    <div id="user-settings">
+                        <div id="username"></div>
+                        <div><i class="fas fa-caret-down"></i></div>
+                    </div>
+
+                    <div id="drop-menu" class="none">
+                        <a id="setting">用戶設定</a>
+                        <a>收藏帖子</a>
+                        <a>歷史記錄</a>
+                        <a id="logout-button">登出</a>
+                    </div>
+                </div>
+                <div id="nav-login">
+                    <div id="nav-login-inner">
+                        登 入 / 註 冊
+                    </div>
+                </div>
+            </div>
+            <div class="progress-bar" id="myBar"></div>
+        </nav>
+
+
+
+
+        <div class="contentFixed">
+
+            <div id="main-board">
+
+                <div id="main-board-text">
+                    <p class="glow">討論中的帖子. . .</p>
+                </div>
+                <div href="#popup" class="add-post-icon" id="add-post-icon">
+                    <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M39.5833 6.25H10.4167C8.10417 6.25 6.25 8.125 6.25 10.4167V39.5833C6.25 41.875 8.10417 43.75 10.4167 43.75H39.5833C41.875 43.75 43.75 41.875 43.75 39.5833V10.4167C43.75 8.125 41.875 6.25 39.5833 6.25ZM39.5833 39.5833H10.4167V10.4167H39.5833V39.5833ZM27.0833 35.4167H22.9167V27.0833H14.5833V22.9167H22.9167V14.5833H27.0833V22.9167H35.4167V27.0833H27.0833V35.4167Z"
+                            fill="black" fill-opacity="0.54" />
+                    </svg>
+                </div>
+            </div>
+            <section id="main-post">
+
+                <div id="post-container">
+                    <div id="post-inner-container" class="border radius">
+
+
+                    </div>
+
+                </div>
+            </section>
+            <div id="pagination">
+
+                <div id="pageNum" class="">
+                    <a href="/?page=1&category=0">1</a>
+
+                </div>
+
+            </div>
+            <div id="footer">
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- login form -->
+
+    <div id="hide-shadow" class="none">
+        <div id="shadow">
+            <div class="login-wrap">
+                <div class="login-html">
+                    <a id="login-form-close" class="close" href="#">&times;</a>
+                    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1"
+                        class="tab">登入</label>
+                    <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">註冊</label>
+                    <div class="login-form">
+                        <form id="login-page" class="sign-in-htm" action='/login' method="POST">
+                            <div class="group">
+                                <label for="user" class="label">電郵</label>
+                                <input id="user" type="email" name="loginID" class="input">
+                            </div>
+                            <div class="group">
+                                <label for="pass" class="label">密碼</label>
+                                <input id="pass" type="password" name="loginPassword" class="input"
+                                    data-type="password">
+                            </div>
+                            <div class="group">
+                                <input id="check" type="checkbox" class="check">
+
+                                <label for="check"><span class="icon"></span> 保持登入</label>
+                            </div>
+                            <div class="group">
+                                <input id="submit-login " type="submit" class="button" value="登入">
+                                <input onclick="location.href='/connect/google'" type="button" class="button"
+                                    value="Google登入">
+                            </div>
+
+                            <div class="foot-lnk">
+                                <a href="#forgot">忘記密碼</a>
+                            </div>
+                        </form>
+                        <form action="/register" class="sign-up-htm" method="POST" id='register'>
+                            <div class="group">
+                                <label for="user" class="label">用戶名</label>
+                                <input id="user-register" name="username" type="text" class="input">
+                            </div>
+                            <div class="group">
+                                <label for="pass" class="label">密碼</label>
+                                <input id="password" name="password" type="password" class="input" data-type="password">
+                            </div>
+                            <div class="group">
+                                <label for="pass" class="label">重覆密碼</label>
+                                <input id="repeat-password" name="confirmPassword" type="password" class="input"
+                                    data-type="password">
+                            </div>
+                            <div class="group">
+                                <label for="pass" class="label">電郵</label>
+                                <input id="email" name="email" type="text" class="input">
+                            </div>
+                            <div class="group">
+                                <input type="submit" class="button" value="註冊">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <!-- user-setting form -->
+    <div id="user-setting-background" class="none">
+        <div id="flex-container">
+            <div id="setting-container" class="">
+                <div id="form-head">
+                    <a id="user-setting-close" href="#"><i class="fas fa-times font-20"></i></a>
+                </div>
+                <div id="shadow-wrap">
+                    <div id="form-shadow" class="none"></div>
+                    <div id="form-outer-wrap">
+                        <div id="form-wrap">
+                            <div id="user-setting-title">用戶設定</div>
+                            <div id="current-photo-container">
+                                <div id="current-photo" style="background-image: url('./profile/filepath')">
+                                    <input type="file" id="upload" hidden />
+                                    <label id="change-photo-button" for="upload"><i
+                                            class="fas fa-camera font-20"></i></label>
+                                </div>
+                            </div>
+                            <div id="edit-container">
+                                <div id="current-username">
+                                    <div class="edit-wrap">
+                                        <i class="setting-icon fas fa-user font-20"></i>
+                                        <div class="edit-row">
+                                            <div>用戶名</div>
+                                            <div id="actualName">Name</div>
+                                        </div>
+                                    </div>
+                                    <button id="change-username-button"><i class="far fa-edit font-20"></i></button>
+                                </div>
+                                <div id="current-email">
+                                    <div class="edit-wrap">
+                                        <i class="setting-icon far fa-envelope font-20"></i>
+                                        <div class="edit-row">
+                                            <div>電郵</div>
+                                            <div id="actualEmail">Email</div>
+                                        </div>
+                                    </div>
+                                    <button id="change-email-button"><i class="far fa-edit font-20"></i></button>
+                                </div>
+                                <div id="current-password">
+                                    <div class="edit-wrap">
+                                        <i class="setting-icon fas fa-key font-20"></i>
+                                        <div class="edit-row">
+                                            <div>密碼</div>
+                                            <div>更改密碼</div>
+                                        </div>
+                                    </div>
+                                    <button id=change-password-button><i class="far fa-edit font-20"></i></button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <form id="change-photo" class="none">
+                            <div id="change-photo-inner">
+                                <div id="img-wrap">
+                                    <img id="cropImg">
+                                </div>
+                                <div class="button-wrap">
+                                    <!-- <button id="photoCancel" class="btn btn-primary profile-button cancel">取消</button> -->
+                                    <div id="photoCancel" class="btn btn-primary profile-button cancel">取消</div>
+                                    <input class="btn btn-primary profile-button" type="submit" value="儲存">
+                                </div>
+                            </div>
+                        </form>
+                        <form id="change-username" class="none">
+                            <div class="input">
+                                <label class="labels">用戶名</label>
+                                <input type="text" class="form-control" name="newUsername" placeholder="輸入更改用戶名"
+                                    value="">
+                            </div>
+                            <div class="button-wrap">
+                                <!-- <button id="userCancel" class="btn btn-primary profile-button cancel">取消</button>
+                                <input id="usernameSubmit" class="btn btn-primary profile-button" type="submit"
+                                    value="儲存"> -->
+                                <div id="userCancel" class="btn btn-primary profile-button cancel">取消</div>
+                                <input id="usernameSubmit" class="btn btn-primary profile-button" type="submit"
+                                    value="儲存">
+                            </div>
+                        </form>
+                        <form id="change-email" class="none">
+                            <div class="input">
+                                <label class="labels">電郵</label>
+                                <input type="text" class="form-control" placeholder="輸入更改電郵" name="newEmail" value="">
+                            </div>
+                            <div class="button-wrap">
+                                <div id="emailCancel" class="btn btn-primary profile-button cancel">取消</div>
+                                <input class="btn btn-primary profile-button" type="submit" value="儲存">
+                            </div>
+                        </form>
+                        <form id="change-password" class="none">
+                            <div class="input">
+                                <label class="labels">舊密碼</label>
+                                <input type="password" data-type="password" class="form-control mb-3"
+                                    placeholder="輸入現有密碼" name="oldPassword" value="">
+
+                                <label class="labels">新密碼</label>
+                                <input type="password" data-type="password" class="form-control" placeholder="輸入更改密碼"
+                                    value="" name="newPassword">
+                            </div>
+                            <div class="button-wrap">
+                                <div id="passwordCancel" class="btn btn-primary profile-button cancel">取消</div>
+                                <input class="btn btn-primary profile-button" type="submit" value="儲存">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                </form>
+
+                <!-- helen added -->
+
+            </div>
+        </div>
+
+    </div>
+    <!-- popup form -->
+    <div id="popup-background" class="none">
+        <div id="flex-container">
+            <div id="popupform-container">
+                <div id="popupform-head">
+                    <form action="/addPosts" id="popup-form" enctype="multipart/form-data" method="POST">
+                        <div class="add-title">
+                            <label for="add-title">標題:</label>
+                            <input type="input" id="add-title" name="add-title" required>
+                        </div>
+                        <div class="add-content">
+                            <p>內容:</p>
+                            <textarea type="tel" name="content" required></textarea>
+                        </div>
+                        <div class="add-image-div">
+                            <h3>圖片:</h3>
+                            <div class="addimageextra">
+                                <div class="image-upload" id="addimage">
+                                    <input type="file" name="photo" accept=".jpg, .jpeg, .bmp, .gif, .png"
+                                        onchange="previewFile()" />
+                                    <img src="">
+                                    <i class="fas fa-plus-circle fa-2x"></i>
+                                    <!-- <i class="fas fa-times-circle"></i> -->
+                                </div>
+                            </div>
+
+
+
+                            <div class="submitbtn">
+                                <i class="upload-plus fas fa-plus-circle fa-2x"></i>
+                                <div id="categorybtn">選擇類別</div>
+                                <div class='category-option'>
+
+                                </div>
+
+                                <input type="submit" value="提交" class='submitbtnnone' id="submitbtn">
+                                <input type='reset' value="清除" id="resetbtn" />
+                            </div>
+
+                        </div>
+                    </form>
+                    <a id="popup-close"><i class="fas fa-times font-20"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="reportIsGd" class="none">
+        <div id="flex-container">
+            <div id="popupreport-container">
+                <div id="reportForm-head">
+                    <form action="/report" id="reported-form" enctype="multipart/form-data" method="POST">
+                        <div class="report-title">
+                            <label for="report-title">檢舉用戶</label>
+                        </div>
+                        <div class="report-content">
+                            <p>內容:</p>
+                            <input type="checkbox" class="repCat" id='rep1' name=1 value="暴力或令人反感的內容">
+                            <label for="rep1">暴力或令人反感的內容</label>
+                            <input type="checkbox" class="repCat" id='rep2' name=2 value="宣傳恐怖主義">
+                            <label for="rep2">宣傳恐怖主義</label>
+                            <input type="checkbox" class="repCat" id='rep3' name=3 value="垃圾內容或誤導性內容">
+                            <label for="rep3">垃圾內容或誤導性內容</label>
+                            <input type="checkbox" class="repCat" id='rep4' name=4 value="仇恨或惡意內容">
+                            <label for="rep4">仇恨或惡意內容</label>
+                        </div>
+                        <div class="report-submit">
+
+
+                            <div class="reportSubmit">
+
+                                <input type="submit" value="提交" id="reportSubmit">
+
+                            </div>
+                        </div>
+                    </form>
+                    <a id="report-close" href="#"><i class="fas fa-times font-20"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="./node_modules/cropperjs/dist/cropper.js"></script>
+        <script src="./node_modules/moment/moment.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+        <script src="universal.js"></script>
+        <script src="index.js"></script>
+
+</body>
+
+</html>

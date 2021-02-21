@@ -1,0 +1,51 @@
+image: node:latest
+
+stages:
+  - testing
+  - deploy
+
+variables:
+  POSTGRES_DB: badprojecttest
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_HOST: postgres
+
+
+testing:
+  only:
+    - production
+  services:
+    - postgres:latest
+
+  before_script:
+    - yarn install
+    - yarn knex migrate:latest --env test
+
+
+  stage: testing
+
+  script:
+    - yarn jest
+
+deploy:
+  only:
+    - production
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > private.pem
+    - chmod 400 private.pem
+    - ssh-add private.pem > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -H wongkityan.com > ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  stage: deploy
+  script:
+    - ssh ubuntu@wongkityan.com 
+        "cd /home/ubuntu/bad_project;
+          git pull origin production;
+          yarn install;
+          yarn knex migrate:latest --env production;
+          yarn knex seed:run --env production;
+          forever restart index.js;"
