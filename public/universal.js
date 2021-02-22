@@ -411,10 +411,11 @@ async function base64ToBlob(){
   const formData = new FormData();
   formData.append("photo",file);
 
-  const res = await fetch('/changePhoto', {
+  const resAPI = await fetch('/changePhoto', {
     method: "POST",
     body: formData
   });
+  await resAPI.json()
 }
 
 

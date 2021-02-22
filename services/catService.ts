@@ -33,7 +33,7 @@ export class CatService {
         }
         else {
             current_page_content = await joinfile().where('categories.id', `${category}`)
-            for (let current of current_page_content) { // Don't put in for-loop
+            for (let current of current_page_content) {
                 current['no_of_comment'] = (await this.knex
                     .count({ no_of_comments: 'comments.post_id' })
                     .from('posts')
@@ -140,13 +140,6 @@ export class CatService {
         let current_page_content;
         let string1 = searchtext.toLowerCase() + "%"
         let string2 = "%" + searchtext.toLowerCase() + "%"
-
-        // const searchedResult:{id:number}[] = [];
-        // const string1Result = (await this.knex.raw(`select users.username, users."userIcon", categories.category, posts.id, posts.title, posts.content, posts.no_of_likes, 
-        // posts.no_of_dislikes, posts.no_of_bookmarked, posts.created_at from posts
-        // join categories on posts.category_id = categories.id join users on posts.user_id = users.id
-        // where posts.title like :string1`,{string1}));
-        // searchedResult.push(string1Result.map(row=>row.id));
 
         current_page_content = (await this.knex.raw(`select users.username, users."userIcon", categories.category, posts.id, posts.title, posts.content, posts.no_of_likes, 
          posts.no_of_dislikes, posts.no_of_bookmarked, posts.created_at from posts

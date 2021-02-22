@@ -5,8 +5,8 @@ const os = require('os')
 async function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-//Web Scraping
 
+//Web Scraping
 async function eachPage(page, href) {
     await page.goto(href, { waitUntil: "networkidle2", timeout: 0 })
     let data = await page.evaluate(async () => {
@@ -35,7 +35,6 @@ async function gotoPost(page, post) {
         return title.innerText
     })
     const postPages = await page.evaluate(async () => {
-        // selector always need to change
         const postPages = document.querySelectorAll('#rightPanel>div:nth-child(2)>div>div>div:nth-child(2)>div>select>option')
         let link = []
         let i =0
@@ -145,50 +144,42 @@ async function goToLihkg() {
     let browser = await puppeteer.launch({ headless: true , timeout: 0});
     let page = await browser.newPage();
     await page.goto('https://lihkg.com/', { waitUntil: "networkidle2" })
-    // Keep track waht is current channel id in txt, json file 
-    // will continue at the stopped point
-    // 1. Write 38 to a txt/json file
-    // 2. page.evaluate (Way slower)
-    // 3. get back the post information
-
-    // Alternative way:
-    let channels = await page.evaluate(async () => {  // inside browser context
+    let channels = await page.evaluate(async () => {  
         const channels = document.querySelectorAll('#app>div :nth-child(2)>div:nth-child(2)>div:nth-child(2) a')
         let link = []
         for (let channel of channels) {
             switch (channel.href.substring(channel.href.length - 2, channel.href.length)) {
-                // No hardcode
-                // case "/5":
-                // case "38":
-                // case "33":
-                // case "15":
-                // case "/7":
-                // case "37":
-                // case '/4':
-                // case '22':
-                // case '/9':
-                // case '26':
-                // case '35':
-                // case '31':
-                // case '36':
-                // case '16':
-                // case '30':
-                // case '17':
-                // case '14':
-                // case '27':
-                // case '19':
-                // case '/6':
-                // case '18':
-                // case '12':
-                // case '10':
-                // case '11':
-                // case '/8':
-                // case '23':
-                // case '21':
-                // case '20':
-                // case '25':
-                // case '13':
-                // case '24':
+                case "/5":
+                case "38":
+                case "33":
+                case "15":
+                case "/7":
+                case "37":
+                case '/4':
+                case '22':
+                case '/9':
+                case '26':
+                case '35':
+                case '31':
+                case '36':
+                case '16':
+                case '30':
+                case '17':
+                case '14':
+                case '27':
+                case '19':
+                case '/6':
+                case '18':
+                case '12':
+                case '10':
+                case '11':
+                case '/8':
+                case '23':
+                case '21':
+                case '20':
+                case '25':
+                case '13':
+                case '24':
                 case '34':
                     if (link.includes(channel.href)) {
                         continue;
@@ -200,7 +191,6 @@ async function goToLihkg() {
         }
         return link
     })
-    // console.log(channels)
     for (let channel of channels) {
         await gotoChannel(page, channel)
     }

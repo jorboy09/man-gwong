@@ -1,8 +1,6 @@
 import express from 'express';
+
 //  Middleware 
-
-
-
 //checks if user is logged in
 
 export const isLoggedIn = (req: express.Request, res: express.Response, next: express.NextFunction) => {

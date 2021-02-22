@@ -26,34 +26,6 @@ export class PostService {
             results = await join().where("comments.id", comment_id)
         }
 
-        /*
-            Example SQL    
-        SELECT posts.title,posts.content,comments.content,count(users_liked.id) FROM posts inner join comments 
-        on posts.id = comments.post_id
-        inner join users_liked on users_liked.liked_post_id = posts.id
-        where posts.id = 9847 
-        GROUP by posts.title, posts.content, comments.content;
-        */
-
-
-        /**
-         * 
-            With recursive refer_comments as (
-                SELECT comments.* from comments where refer_id is NOT NULL and post_id = 9847
-                union 
-                select refer_comments.* from comments inner join refer_comments
-                on comments.id = refer_comments.refer_id
-            )
-            select * from refer_comments;
-         */
-        
-
-         /**
-          *  select users.id,count(posts.id) from users inner join posts on users.id = posts.user_id group by users.id;
-          */
-
-
-        // Avoid running sql inside loop
         for (const result of results) {
             let no_of_likes = (await this.knex.count("*").from("user_liked_comment").where("liked_comment_id", result.id))[0].count as string
             result.no_of_likes = parseInt(no_of_likes)

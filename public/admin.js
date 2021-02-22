@@ -4,7 +4,7 @@ async function readContent() {
   let res = await fetch("/getReportedContent")
   let result = await res.json()
   if (result.result == false) {
-    alert("you are not admin") // don't use alert
+    alert("you are not admin")
   } else {
     document.querySelector(".violence-num").innerText = result.violence.length
     document.querySelector(".terrorist-num").innerText = result.terrorist.length
@@ -56,8 +56,6 @@ function display(container, contents) {
           </a>`
 
   for (const content of contents) {
-    // if( content.content.length ) 
-    // if(Array.isArray(XXXX))
     if (typeof content.content == 'object') {
 
       let el = document.createElement("div");

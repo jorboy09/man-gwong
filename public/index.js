@@ -1,4 +1,3 @@
-
 //get Post content and set pagination
 async function readPost() {
   const query = new URLSearchParams(location.search);
@@ -274,7 +273,6 @@ function previewFile() {
 }
 
 //Check files are images or not
-// no need underscore for naming
 let _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];
 
 // no use
@@ -371,7 +369,6 @@ function uploadImage() {
   
   </div>`;
     addImage.appendChild(div);
-    // imgTag()
   })
 }
 

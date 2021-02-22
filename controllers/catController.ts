@@ -27,7 +27,6 @@ export class CatController {
     public addPosts = async (req: Request, res: Response) => {
         try {
             await this.catService.addPosts(req.body, req.files, req.session['user']);
-            // await this.catService.addPosts(req.body, req.session['user']);
             this.io.emit('post-update')
             res.json({ result: true })
         } catch (error) {
@@ -57,7 +56,6 @@ export class CatController {
                 headers: {
                     'Content-type': 'application/json; charset=utf-8',
                     'User-Agent': '*',
-                    // "Access-Control-Allow-Origin": "*"
                 },
                 body: JSON.stringify({
                     content: content

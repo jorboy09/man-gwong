@@ -4,28 +4,22 @@ import { ReportedComment, ReportedPost, User } from './models';
 
 
 export class AdminService{
-    // small letter
-    constructor(private Knex:Knex){}
+    constructor(private knex:Knex){}
 
 
     // get the post reported in different cat
     public async getReportedContent() {
-      let joinfile_post = this.Knex.select("users.id" ,"users.username","posts.content", "posts.created_at")
+      let joinfile_post = this.knex.select("users.id" ,"users.username","posts.content", "posts.created_at")
       .from('post_report')
       .leftJoin("posts","posts.id",'post_report.post_id')
       .leftJoin("users","posts.user_id","users.id") 
-      
-      // Should be one SQL
-      // joinfile_post.whereIn('post_type_id',[1,2,3,4]);
-
-      // select report_type, json_agg(post_report) from post_report inner join report_cats on post_report.post_type_id = report_cats.id group by report_type;
       
       let violencePost = await joinfile_post.where("post_type_id",1)
       let terroristPost = await joinfile_post.where("post_type_id",2)
       let misleadingPost = await joinfile_post.where("post_type_id",3)
       let hatredPost = await joinfile_post.where("post_type_id",4)
 
-      let joinfile_comment = ()=>this.Knex.select("users.id", "users.username", "comments.content", "comments.created_at")
+      let joinfile_comment = ()=>this.knex.select("users.id", "users.username", "comments.content", "comments.created_at")
       .from('comment_report')
       .leftJoin("comments","comments.id",'comment_report.comment_id')
       .leftJoin("users","comments.user_id","users.id") 
@@ -48,7 +42,7 @@ export class AdminService{
 
 
       public async getReportedComments(catId:number):Promise<ReportedComment[]> {
-        return await this.Knex
+        return await this.knex
         .select('content')
         .count('comment_type_id')
         .from('comment_report')
@@ -57,12 +51,11 @@ export class AdminService{
         .groupBy('content')
       }
 
-
     // add the reported type to the post/comment
     public async addReportedPost(post_id:number, post_type_id:number){
       
       
-        let result = await this.Knex('post_report').insert({
+        let result = await this.knex('post_report').insert({
              post_id,
              post_type_id
         }).returning('*')
@@ -72,7 +65,7 @@ export class AdminService{
 
     public async addReportedComment(comment_id:number, comment_type_id:number){
  
-    let result = await this.Knex('comment_report').insert({
+    let result = await this.knex('comment_report').insert({
           comment_id,
           comment_type_id
      }).returning('*')
@@ -82,20 +75,13 @@ export class AdminService{
 
       //get the number of reported post/comment in different cat
     public async countReportedPostCat1(catId:number) {
-        return await this.Knex.count('*').from('post_report').where('post_type_id','=',catId)
-
+        return await this.knex.count('*').from('post_report').where('post_type_id','=',catId)
     }
-
-
 
     //destroy /disactivate the user
-
     public async disactivateUser(id:number){
-      return await this.Knex('users').where('id',id).del()
+      return await this.knex('users').where('id',id).del()
     }
-    //get the list of disactivated users
-
-
 }
 
 

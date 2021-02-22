@@ -12,8 +12,6 @@ import fetch from 'node-fetch';
 export class LoginService {
   private static SALT_ROUNDS = 10
 
-  // No Use
-
   constructor(private knex: Knex) { }
 
   public async fetchGoogle(accessToken) {
@@ -114,8 +112,6 @@ export class LoginService {
 
       return (result.length)
     } else {
-
-      // throw new Error("Wrong Password");
       return "wrongOldPW";
     }
   }

@@ -96,7 +96,6 @@ export class LoginController {
     public getUserInfo = async (req, res) => {
         let result = (await this.loginService.getUserInfo(req.session["user"]))[0]    //2 is mocking req.session["user"] means id
 
-        // Good, didn't pass password
         return res.json(
             {
                 id: result.id,

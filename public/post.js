@@ -5,7 +5,7 @@ socket.on('comment-update', () => {
 
 
 let post_id = query.get("post")
-let count = 0;   //for adding pagination in the future
+let count = 0; 
 
 
 async function readAndDisplayComment() {
@@ -14,8 +14,6 @@ async function readAndDisplayComment() {
 }
 
 readAndDisplayComment()
-
-
 
 //start of comment service
 //fetch post id to backend to get comments

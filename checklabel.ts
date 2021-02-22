@@ -1,7 +1,5 @@
 let labels = ['__label__時事', '__label__硬件', '__label__健康', '__label__財經', '__label__財經', '__label__房屋', '__label__App', '__label__寵物'];
 let labels2 = ['__label__World', '__label__財經', '__label__娛樂', '__label__房屋', '__label__財經', '__label__手機', '__label__App', '__label__軟件'];
-// let labelDuplicate = ['__label__時事', '__label__World', '__label__政事', '__label__財經', '__label__娛樂', '__label__手機', '__label__硬件', '__label__App', '__label__軟件', '__label__電訊']
-// console.log(labelDuplicate.length)
 
 
 let array = 'X19sYWJlbF9f6YGK5oiy,X19sYWJlbF9f546p5YW3,X19sYWJlbF9f6Luf5Lu2,'

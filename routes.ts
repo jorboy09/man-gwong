@@ -15,7 +15,6 @@ export class Routes {
         routes.post('/likePost',postController.likePost)
         routes.post('/checkPostDislike',postController.checkPostDislike)
         routes.post('/disLikePost',postController.disLikePost)
-   
         routes.post('/getCommentPost', postController.getCommentPost)
         routes.post('/likeComment',isLoggedIn,postController.likeComment)
         routes.post('/checkLikedComment',isLoggedIn,postController.checkLikedComment)

@@ -8,8 +8,6 @@ class GoogleLogin {
     public getMediator(): express.RequestHandler {
         return grant({
             "defaults": {
-                // "protocol": "http",
-                // "host": "localhost:8080",
                 "origin": "http://localhost:8080",
                 "transport": "session",
                 "state": true,
