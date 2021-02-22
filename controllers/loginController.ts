@@ -67,7 +67,6 @@ export class LoginController {
 
     public login = async (req: express.Request, res: express.Response) => {
 
-
         const user = (await this.loginService.getUsers(req.body.email))[0]
 
 
@@ -78,9 +77,9 @@ export class LoginController {
             req.session['user'] = user.id
             req.session['admin'] = user.admin
 
-            return res.json({ result: true, token: user.password }); // To the protected page.
+            res.json({ result: true, token: user.password }); // To the protected page.
         } else {
-            return res.status(401).redirect('/index.html?error=Incorrect+Password')
+            res.status(401).redirect('/index.html?error=Incorrect+Password')
         }
 
 
